@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xl-12">
+      <h2>Welcome To Angular-Animation</h2>
+      <button class="btn btn-primary" (click)="onAnimate()" type="button">Animation!</button>
+      <button class="btn btn-success" (click)="onShrink()" type="button">Shrink!</button>
+      <hr>
+      <div
+        style="width: 100px; height: 100px;"
+        [@divState]="state">
+      </div>
+      <br>
+      <div
+        style="width: 100px; height: 100px;"
+        [@wildState]="wildState">
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-12">
+      <input type="text" class="form-control" placeholder="Enter Your Item Name..." #input>
+      <button class="btn btn-primary" (click)="onAdd(input.value)">Add Item!</button>
+      <hr>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          [@list1]=""
+          (click)="onDelete(item)"
+          *ngFor="let item of list">
+          {{ item }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-xl-12">
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          [@list2]=""
+          (click)="onDelete(item)"
+          *ngFor="let item of list">
+          {{ item }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
