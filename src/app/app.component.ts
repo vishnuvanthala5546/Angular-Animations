@@ -6,7 +6,9 @@ import {animate, group, keyframes, state, style, transition, trigger} from '@ang
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
-    trigger('divState', [state('normal', style({
+    // ****************First Number Trigger************ //
+    trigger('divState', [
+      state('normal', style({
       'background-color': 'red',
       transform: 'translateX(0)'
     })),
@@ -16,13 +18,14 @@ import {animate, group, keyframes, state, style, transition, trigger} from '@ang
       })),
       transition('normal <=> highlighted', animate(300)),
     ]),
-    // ****************Second No circle************ //
-    trigger('wildState', [state('normal', style({
+// ****************Second Number Trigger************ //
+    trigger('wildState', [
+      state('normal', style({
       'background-color': 'red',
-      transform: 'translateX(0) scale(1)'
-    })),
+        transform: 'translateX(0) scale(1)'
+      })),
       state('highlighted', style({
-        'background-color': 'blue',
+      'background-color': 'blue',
         transform: 'translateX(100px) scale(1)'
       })),
       state('shrunken', style({
@@ -31,35 +34,42 @@ import {animate, group, keyframes, state, style, transition, trigger} from '@ang
       })),
       transition('normal <=> highlighted', animate(300)),
       transition('highlighted => normal', animate(800)),
-      transition('shrunken <=> *', [style({
-        'background-color': 'orange'
-      }),
+      transition('shrunken <=> *', [
+        style({
+          'background-color': 'orange'
+        }),
         animate(1000, style({
           borderRadius: '50px'
         })),
         animate(500)])]),
-    // ********** textBox animation (insert value mate) ****************** //
-    trigger('list1', [state('in', style({
+// ********** textBox animation (insert value mate) ****************** //
+    trigger('list1', [
+      state('in', style({
       opacity: 1,
       transform: 'translateX(0)'
     })),
-      transition('void => *', [style({
+      transition('void => *', [
+        style({
         opacity: 0,
         transform: 'translateX(-100px)'
       }),
         animate(300)]),
-      // ************* textbox ni value Delete mate (list-1) *************//
-      transition('* => void', [animate(300, style({
+// ************* textbox ni value Delete mate (list-1) *************//
+      transition('* => void', [
+        animate(300, style({
         transform: 'translateX(100px)',
         opacity: 0
       }))]),
     ]),
-    // ************* Delete mate (list-2) *************//
-    trigger('list2', [state('in', style({
+// ************* Delete mate (list-2) *************//
+    trigger('list2', [
+      state('in', style({
       opacity: 1,
       transform: 'translateX(0)'
     })),
-      transition('void => *', [animate(1000, keyframes([style({
+      transition('void => *', [
+        animate(1000, keyframes([
+            style({
           transform: 'translateX(-100px)',
           opacity: 0,
           offset: 0
@@ -81,7 +91,7 @@ import {animate, group, keyframes, state, style, transition, trigger} from '@ang
           })
         ])
       )]),
-      // ************* Delete Record Mate *************** //
+// ************* Delete Record Mate *************** //
       transition('* => void', [
         group([
           animate(300, style({
