@@ -1,16 +1,15 @@
 import {Component} from '@angular/core';
-import {animate, animation, keyframes, state, style, transition, trigger} from '@angular/animations';
+import {animate, group, keyframes, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
-    trigger('divState', [
-      state('normal', style({
-        'background-color': 'red',
-        transform: 'translateX(0)'
-      })),
+    trigger('divState', [state('normal', style({
+      'background-color': 'red',
+      transform: 'translateX(0)'
+    })),
       state('highlighted', style({
         'background-color': 'blue',
         transform: 'translateX(100px)'
@@ -18,11 +17,10 @@ import {animate, animation, keyframes, state, style, transition, trigger} from '
       transition('normal <=> highlighted', animate(300)),
     ]),
     // ****************Second No circle************ //
-    trigger('wildState', [
-      state('normal', style({
-        'background-color': 'red',
-        transform: 'translateX(0) scale(1)'
-      })),
+    trigger('wildState', [state('normal', style({
+      'background-color': 'red',
+      transform: 'translateX(0) scale(1)'
+    })),
       state('highlighted', style({
         'background-color': 'blue',
         transform: 'translateX(100px) scale(1)'
@@ -33,73 +31,68 @@ import {animate, animation, keyframes, state, style, transition, trigger} from '
       })),
       transition('normal <=> highlighted', animate(300)),
       transition('highlighted => normal', animate(800)),
-      transition('shrunken <=> *', [
-        style({
-          'background-color': 'orange'
-        }),
+      transition('shrunken <=> *', [style({
+        'background-color': 'orange'
+      }),
         animate(1000, style({
           borderRadius: '50px'
         })),
-        animate(500)
-      ])
-    ]),
+        animate(500)])]),
     // ********** textBox animation (insert value mate) ****************** //
-    trigger('list1', [
-      state('in', style({
-        opacity: 1,
-        transform: 'translateX(0)'
-      })),
-      transition('void => *', [
-        style({
-          opacity: 0,
-          transform: 'translateX(-100px)'
-        }),
-        animate(300)
-      ]),
+    trigger('list1', [state('in', style({
+      opacity: 1,
+      transform: 'translateX(0)'
+    })),
+      transition('void => *', [style({
+        opacity: 0,
+        transform: 'translateX(-100px)'
+      }),
+        animate(300)]),
       // ************* textbox ni value Delete mate (list-1) *************//
-      transition('* => void', [
-        animate(300, style({
-          transform: 'translateX(100px)',
-          opacity: 0
-        }))
-      ]),
+      transition('* => void', [animate(300, style({
+        transform: 'translateX(100px)',
+        opacity: 0
+      }))]),
     ]),
     // ************* Delete mate (list-2) *************//
-    trigger('list2', [
-      state('in', style({
-        opacity: 1,
-        transform: 'translateX(0)'
-      })),
-      transition('void => *', [
-        animate(1000, keyframes([
-            style({
-              transform: 'translateX(-100px)',
-              opacity: 0,
-              offset: 0
-            }),
-          style({
-            transform: 'translateX(-50px)',
-            opacity: 0.5,
-            offset: 0.3
-          }),
-          style({
-            transform: 'translateX(-20px)',
-            opacity: 1,
-            offset: 0.8
-          }),
-          style({
-            transform: 'translateX(0px)',
-            opacity: 1,
-            offset: 1
-          })
-        ]))
-      ]),
-      transition('* => void', [
-        animate(300, style({
-          transform: 'translateX(100px)',
-          opacity: 0
+    trigger('list2', [state('in', style({
+      opacity: 1,
+      transform: 'translateX(0)'
+    })),
+      transition('void => *', [animate(1000, keyframes([style({
+        transform: 'translateX(-100px)',
+        opacity: 0,
+        offset: 0
+      }),
+        style({
+          transform: 'translateX(-50px)',
+          opacity: 0.5,
+          offset: 0.3
         }),
-      )]),
+        style({
+          transform: 'translateX(-20px)',
+          opacity: 1,
+          offset: 0.8
+        }),
+        style({
+          transform: 'translateX(0px)',
+          opacity: 1,
+          offset: 1
+        })
+      ])
+    )]),
+      // ************* Delete Record Mate *************** //
+      transition('* => void', [
+        group([
+          animate(300, style({
+            color: 'red'
+          })),
+          animate(800, style({
+            transform: 'translateX(100px)',
+            opacity: 0
+          }))
+        ])
+      ]),
     ]),
   ]
 })
